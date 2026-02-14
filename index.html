@@ -11,22 +11,20 @@
 
   <style>
     :root{
-      --bg:#020204;
-      --surface: rgba(14,14,20,.62);
-      --surface2: rgba(18,18,28,.78);
-      --text:#f5f7ff;
-      --dim: rgba(205,214,236,.78);
+      /* PURE BLACK THEME (no blue/neon) */
+      --bg:#000000;
+      --bg2:#050505;
+      --surface: rgba(12,12,12,.78);
+      --surface2: rgba(18,18,18,.86);
 
-      --a1:#00f0ff;
-      --a2:#b26bff;
-      --a3:#00ffa3;
+      --text:#f5f5f5;
+      --dim: rgba(245,245,245,.68);
 
       --border: rgba(255,255,255,.10);
-      --border2: rgba(0,240,255,.35);
-      --glow: rgba(0,240,255,.18);
+      --border2: rgba(255,255,255,.18);
 
+      --shadow: 0 30px 90px rgba(0,0,0,.80);
       --radius: 18px;
-      --shadow: 0 30px 90px rgba(0,0,0,.65);
 
       --display: "Syne", sans-serif;
       --mono: "JetBrains Mono", monospace;
@@ -39,37 +37,14 @@
       font-family: var(--mono);
       color: var(--text);
       background:
-        radial-gradient(1200px 800px at 15% 30%, rgba(178,107,255,.12), transparent 60%),
-        radial-gradient(1000px 700px at 85% 45%, rgba(0,240,255,.12), transparent 55%),
-        radial-gradient(900px 600px at 50% 90%, rgba(0,255,163,.10), transparent 60%),
+        radial-gradient(1200px 800px at 20% 18%, rgba(255,255,255,.08), transparent 60%),
+        radial-gradient(900px 600px at 78% 35%, rgba(255,255,255,.05), transparent 55%),
+        radial-gradient(1000px 700px at 50% 92%, rgba(255,255,255,.06), transparent 60%),
         var(--bg);
       overflow-x:hidden;
     }
 
-    /* Aurora */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:-20%;
-      z-index:-2;
-      background:
-        conic-gradient(from 200deg,
-          rgba(0,240,255,0),
-          rgba(0,240,255,.12),
-          rgba(178,107,255,.12),
-          rgba(0,255,163,.10),
-          rgba(0,240,255,0));
-      filter: blur(90px);
-      opacity:.55;
-      animation: aurora 12s linear infinite;
-    }
-    @keyframes aurora{
-      0%{transform:rotate(0deg) scale(1)}
-      50%{transform:rotate(180deg) scale(1.05)}
-      100%{transform:rotate(360deg) scale(1)}
-    }
-
-    /* Noise */
+    /* Noise texture (premium look) */
     body::after{
       content:"";
       position:fixed;
@@ -78,18 +53,36 @@
       pointer-events:none;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
       mix-blend-mode: overlay;
-      opacity:.06;
+      opacity:.07;
     }
 
-    /* Particles canvas */
+    /* Subtle moving “shadow haze” */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:-25%;
+      z-index:-2;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.08), transparent 55%),
+        radial-gradient(circle at 80% 50%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(circle at 45% 90%, rgba(255,255,255,.05), transparent 65%);
+      filter: blur(90px);
+      opacity:.35;
+      animation: haze 12s ease-in-out infinite;
+    }
+    @keyframes haze{
+      0%,100%{ transform: translate(0,0) scale(1); }
+      50%{ transform: translate(40px,-30px) scale(1.03); }
+    }
+
+    /* Optional particles, pure white (very subtle) */
     #particles{
       position:fixed; inset:0;
       width:100%; height:100%;
       z-index:-3;
-      opacity:.85;
+      opacity:.50;
     }
 
-    /* Layout */
     .wrap{width:min(1100px, 92vw); margin:0 auto;}
     .spacer{height:90px;}
 
@@ -107,37 +100,29 @@
       justify-content:space-between;
       gap:14px;
       z-index:1000;
-      background: rgba(5,5,8,.55);
+      background: rgba(0,0,0,.55);
       backdrop-filter: blur(18px);
       border:1px solid var(--border);
-      box-shadow: 0 20px 80px rgba(0,0,0,.45);
+      box-shadow: 0 20px 80px rgba(0,0,0,.55);
     }
 
     .logo{
+      display:flex; align-items:center; gap:10px;
       font-family: var(--display);
       font-weight:800;
       letter-spacing:-.02em;
       font-size:1.2rem;
-      background: linear-gradient(135deg, var(--a1), var(--a2));
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      filter: drop-shadow(0 0 14px rgba(0,240,255,.22));
       user-select:none;
-      display:flex;
-      align-items:center;
-      gap:10px;
     }
     .logo-badge{
       width:34px;height:34px;border-radius:12px;
-      background: linear-gradient(135deg, rgba(0,240,255,.18), rgba(178,107,255,.18));
-      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.12);
       display:grid; place-items:center;
-      box-shadow: 0 0 26px rgba(0,240,255,.12);
+      box-shadow: 0 0 30px rgba(0,0,0,.6);
       color:var(--text);
-      -webkit-text-fill-color: var(--text);
       font-family: var(--mono);
-      font-weight:700;
+      font-weight:800;
       font-size:.85rem;
     }
 
@@ -152,23 +137,20 @@
       color: var(--dim);
       text-decoration:none;
       font-size:.9rem;
-      font-weight:600;
-      position:relative;
-      padding:6px 8px;
+      font-weight:700;
+      padding:6px 10px;
       border-radius:10px;
-      transition: all .25s ease;
+      transition: all .22s ease;
+      border: 1px solid transparent;
     }
     .navlinks a:hover{
       color: var(--text);
       background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.08);
     }
 
     /* Hero */
-    header.hero{
-      padding: 110px 0 48px;
-      position:relative;
-    }
+    header.hero{ padding: 110px 0 48px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.1fr .9fr;
@@ -183,19 +165,18 @@
       gap:10px;
       padding:10px 14px;
       border-radius:999px;
-      border:1px solid rgba(0,240,255,.35);
-      background: rgba(0,240,255,.06);
-      color: var(--a1);
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.05);
+      color: rgba(255,255,255,.90);
       text-transform:uppercase;
       letter-spacing:.14em;
       font-size:.78rem;
-      font-weight:800;
-      box-shadow: 0 0 22px rgba(0,240,255,.10), inset 0 0 22px rgba(0,240,255,.08);
+      font-weight:900;
     }
     .dot{
       width:8px;height:8px;border-radius:999px;
-      background: var(--a3);
-      box-shadow: 0 0 18px rgba(0,255,163,.35);
+      background: rgba(255,255,255,.75);
+      box-shadow: 0 0 12px rgba(255,255,255,.25);
     }
 
     h1{
@@ -204,34 +185,13 @@
       font-size: clamp(2.35rem, 6vw, 4.3rem);
       line-height:1.05;
       letter-spacing:-.03em;
-      position:relative;
     }
-    /* Subtle glitch overlay */
-    h1::after{
-      content: attr(data-text);
-      position:absolute;
-      left:0; top:0;
-      width:100%;
-      color: rgba(0,240,255,.65);
-      transform: translate(2px, 0);
-      opacity:.16;
-      mix-blend-mode: screen;
-      animation: glitch 2.8s infinite;
-      pointer-events:none;
-    }
-    @keyframes glitch{
-      0%,100%{ clip-path: inset(0 0 0 0); transform: translate(2px, 0); }
-      20%{ clip-path: inset(12% 0 70% 0); transform: translate(-2px, 0); }
-      45%{ clip-path: inset(55% 0 20% 0); transform: translate(3px, 0); }
-      70%{ clip-path: inset(30% 0 45% 0); transform: translate(-3px, 0); }
-    }
-
-    .grad{
-      background: linear-gradient(135deg, var(--a1), var(--a2));
+    .name{
+      display:inline-block;
+      background: linear-gradient(180deg, #ffffff, rgba(255,255,255,.65));
       -webkit-background-clip:text;
       -webkit-text-fill-color:transparent;
       background-clip:text;
-      filter: drop-shadow(0 0 18px rgba(0,240,255,.15));
     }
 
     .subtitle{
@@ -242,7 +202,7 @@
     .desc{
       margin:0 0 22px;
       color: var(--dim);
-      line-height:1.9;
+      line-height:1.95;
       max-width: 680px;
       font-size: 1.01rem;
     }
@@ -254,37 +214,41 @@
       padding: 12px 16px;
       text-decoration:none;
       color: var(--text);
-      font-weight:800;
+      font-weight:900;
       display:inline-flex;
       align-items:center;
       gap:10px;
-      transition: all .25s ease;
+      transition: all .22s ease;
       background: rgba(255,255,255,.04);
     }
     .btn.primary{
-      background: linear-gradient(135deg, rgba(0,240,255,.95), rgba(178,107,255,.95));
-      color: #05060a;
-      box-shadow: 0 18px 70px rgba(0,240,255,.16);
-      border-color: rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.70));
+      color: #050505;
+      border-color: rgba(255,255,255,.18);
+      box-shadow: 0 18px 70px rgba(0,0,0,.45);
       position:relative;
       overflow:hidden;
     }
     .btn.primary::before{
       content:"";
       position:absolute; inset:0;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+      background: linear-gradient(90deg, transparent, rgba(0,0,0,.12), transparent);
       transform: translateX(-120%);
       transition: transform .6s ease;
     }
     .btn.primary:hover::before{ transform: translateX(120%); }
-    .btn:hover{ transform: translateY(-4px); border-color: var(--border2); }
-    .btn.primary:hover{ box-shadow: 0 22px 90px rgba(0,240,255,.22), 0 0 60px rgba(0,240,255,.14); }
+
+    .btn:hover{
+      transform: translateY(-4px);
+      border-color: var(--border2);
+      background: rgba(255,255,255,.06);
+    }
 
     .quicklinks{
       margin-top:14px;
       display:flex; gap:14px; flex-wrap:wrap;
       color: var(--dim);
-      font-weight:700;
+      font-weight:800;
       font-size:.92rem;
     }
     .quicklinks a{
@@ -294,9 +258,12 @@
       padding-bottom:2px;
       transition: all .2s ease;
     }
-    .quicklinks a:hover{ color: var(--text); border-bottom-color: rgba(0,240,255,.45); }
+    .quicklinks a:hover{
+      color: var(--text);
+      border-bottom-color: rgba(255,255,255,.35);
+    }
 
-    /* Universal Glass Card */
+    /* Glass cards */
     .card{
       background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
       border:1px solid var(--border);
@@ -307,24 +274,31 @@
       overflow:hidden;
       padding: 18px;
     }
+    .card:hover{ border-color: var(--border2); }
+
+    /* subtle moving highlight */
     .card::after{
       content:"";
       position:absolute;
       inset:-2px;
       background: linear-gradient(90deg,
-        rgba(0,240,255,0),
-        rgba(0,240,255,.45),
-        rgba(178,107,255,.35),
-        rgba(0,255,163,.28),
-        rgba(0,240,255,0));
+        rgba(255,255,255,0),
+        rgba(255,255,255,.12),
+        rgba(255,255,255,.0));
       filter: blur(16px);
       opacity:0;
       transition: opacity .35s ease;
       pointer-events:none;
     }
-    .card:hover::after{ opacity:.9; }
+    .card:hover::after{ opacity:.85; }
 
-    /* Right side hero cards */
+    /* Tilt */
+    .tilt{
+      transform-style: preserve-3d;
+      transition: transform .22s ease, border-color .25s ease;
+      will-change: transform;
+    }
+
     .stack{display:grid; gap:14px;}
     .card h3{
       margin:0 0 12px;
@@ -341,22 +315,21 @@
       border:1px solid rgba(255,255,255,.10);
       background: rgba(255,255,255,.03);
       color: var(--dim);
-      font-weight:800;
+      font-weight:900;
       font-size:.78rem;
     }
 
-    /* Sections */
     section{padding: 42px 0;}
     .section-head{
       text-align:center;
       margin-bottom: 18px;
     }
     .kicker{
-      color: var(--a1);
+      color: rgba(255,255,255,.85);
       text-transform: uppercase;
-      letter-spacing:.14em;
+      letter-spacing:.18em;
       font-weight:900;
-      font-size:.78rem;
+      font-size:.75rem;
       display:block;
       margin-bottom:8px;
     }
@@ -370,10 +343,9 @@
       margin:0 auto;
       color: var(--dim);
       max-width: 720px;
-      line-height:1.8;
+      line-height:1.9;
     }
 
-    /* Grids */
     .grid-3{
       margin-top: 18px;
       display:grid;
@@ -382,13 +354,9 @@
     }
     @media (max-width: 950px){ .grid-3{grid-template-columns:1fr;} }
 
-    /* Project cards (tilt-ready) */
     .project{
       padding: 18px;
-      transform-style: preserve-3d;
-      transition: transform .25s ease, border-color .35s ease, box-shadow .35s ease;
     }
-    .project:hover{ border-color: var(--border2); }
     .p-top{
       display:flex;
       justify-content:space-between;
@@ -399,9 +367,9 @@
     .tag{
       padding:8px 10px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
+      border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.03);
-      color: var(--text);
+      color: rgba(255,255,255,.88);
       font-weight:900;
       font-size:.72rem;
       letter-spacing:.08em;
@@ -414,28 +382,19 @@
     .p-desc{
       margin:0 0 12px;
       color: var(--dim);
-      line-height:1.8;
+      line-height:1.9;
       font-size:.96rem;
     }
     .links{display:flex; gap:12px; flex-wrap:wrap; margin-top: 12px;}
     .links a{
       text-decoration:none;
-      color: var(--text);
+      color: rgba(255,255,255,.92);
       font-weight:900;
-      border-bottom:1px dashed rgba(255,255,255,.12);
+      border-bottom:1px dashed rgba(255,255,255,.14);
       padding-bottom:2px;
     }
-    .links a:hover{ border-bottom-color: rgba(0,240,255,.45); }
+    .links a:hover{ border-bottom-color: rgba(255,255,255,.40); }
 
-    /* Skills cards */
-    .skill{
-      transform-style: preserve-3d;
-      transition: transform .25s ease, border-color .35s ease, box-shadow .35s ease;
-    }
-    .skill:hover{ border-color: var(--border2); }
-    .skill h3{margin:0 0 12px; font-family: var(--display); color: var(--a1); }
-
-    /* Contact */
     .contact-grid{
       margin-top: 18px;
       display:grid;
@@ -443,31 +402,30 @@
       gap: 14px;
     }
     @media (max-width: 950px){ .contact-grid{grid-template-columns:1fr;} }
+
     .mono{font-family: var(--mono);}
     .muted{color: var(--dim);}
 
     footer{
       padding: 48px 0 60px;
       text-align:center;
-      color: rgba(205,214,236,.55);
+      color: rgba(245,245,245,.55);
       border-top:1px solid rgba(255,255,255,.08);
       margin-top: 30px;
     }
 
-    /* Small helpers */
-    .row{display:flex; gap:10px; flex-wrap:wrap;}
-    .sep{height: 10px;}
-    .icon{
-      width:34px; height:34px; border-radius: 12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(135deg, rgba(0,240,255,.12), rgba(178,107,255,.12));
-      display:grid; place-items:center;
+    /* Responsive */
+    @media (max-width: 768px){
+      .navlinks{gap:10px}
+      .navlinks a{font-size:.85rem}
+      .btn{width:100%; justify-content:center}
     }
 
-    /* Accessibility: reduce motion */
+    /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important; transition:none !important;}
       body::before{display:none;}
+      #particles{display:none;}
     }
   </style>
 </head>
@@ -493,22 +451,22 @@
   <header class="hero">
     <div class="wrap hero-grid">
       <div>
-        <div class="pill"><span class="dot"></span> AI / ML Engineer • GenAI • LLMs</div>
+        <div class="pill"><span class="dot"></span> AI / ML • GenAI • LLMs</div>
 
-        <h1 data-text="Hi, I'm Ibrahim Hajuri">
-          Hi, I'm <span class="grad">Ibrahim Hajuri</span>
+        <h1>
+          Hi, I'm <span class="name">Ibrahim Hajuri</span>
         </h1>
 
         <p class="subtitle">Building intelligent systems with LLMs, RAG & Multi-Agent AI.</p>
 
         <p class="desc">
           First-year B.Tech CSE student focused on AI/ML and LLM-based systems. I build end-to-end ML pipelines,
-          deploy apps with Streamlit, and prototype agentic workflows using LangChain + vector DBs.
+          deploy apps with Streamlit, and prototype agentic workflows using LangChain + vector databases.
         </p>
 
         <div class="btnrow">
-          <a class="btn primary" href="#projects">🚀 View My Work</a>
-          <a class="btn" href="#contact">📩 Get In Touch</a>
+          <a class="btn primary" href="#projects">View My Work</a>
+          <a class="btn" href="#contact">Get In Touch</a>
         </div>
 
         <div class="quicklinks">
@@ -522,8 +480,8 @@
         <div class="card tilt">
           <h3>Highlights</h3>
           <ul class="bullets">
-            <li>End-to-end ML: EDA → FE → Modeling → Deployment</li>
-            <li>GenAI: RAG, embeddings, vector search, multi-agent flows</li>
+            <li>End-to-end ML: EDA → Feature Engineering → Modeling → Deployment</li>
+            <li>GenAI: RAG, embeddings, vector search, multi-agent workflows</li>
             <li>Stack: Python, PyTorch, Scikit-learn, SQL, Streamlit, Git</li>
           </ul>
         </div>
@@ -547,40 +505,40 @@
         <span class="kicker">Introduction</span>
         <h2>About Me</h2>
         <p class="sub">
-          I’m focused on building real AI projects that ship. I love clean pipelines, sharp evaluation,
-          and turning ideas into demos that actually work.
+          I’m focused on building real AI projects that ship — clean pipelines, strong evaluation,
+          and demos that actually work.
         </p>
       </div>
 
       <div class="grid-3">
-        <div class="card skill tilt">
+        <div class="card tilt">
           <h3>What I Build</h3>
           <p class="muted">
-            ML systems, churn prediction, dashboards, RAG chatbots, multi-agent research copilots.
+            ML systems, churn prediction, dashboards, RAG chatbots, and multi-agent research copilots.
           </p>
-          <div class="sep"></div>
+          <div style="height:10px"></div>
           <div class="chips">
             <span class="chip">Pipelines</span><span class="chip">Evaluation</span><span class="chip">Deployment</span>
           </div>
         </div>
 
-        <div class="card skill tilt">
+        <div class="card tilt">
           <h3>What I’m Learning</h3>
           <p class="muted">
             Advanced deep learning, better retrieval (RAG), and agentic workflows with tools + memory.
           </p>
-          <div class="sep"></div>
+          <div style="height:10px"></div>
           <div class="chips">
             <span class="chip">NLP</span><span class="chip">Agents</span><span class="chip">Vector DB</span>
           </div>
         </div>
 
-        <div class="card skill tilt">
+        <div class="card tilt">
           <h3>Goal</h3>
           <p class="muted">
             Get strong internships and keep building until I’m operating at top ML engineer level.
           </p>
-          <div class="sep"></div>
+          <div style="height:10px"></div>
           <div class="chips">
             <span class="chip">Internships</span><span class="chip">Projects</span><span class="chip">Consistency</span>
           </div>
@@ -597,7 +555,7 @@
       </div>
 
       <div class="grid-3">
-        <div class="card skill tilt">
+        <div class="card tilt">
           <h3>Programming</h3>
           <div class="chips">
             <span class="chip">Python</span><span class="chip">C</span><span class="chip">C++</span>
@@ -605,7 +563,7 @@
           </div>
         </div>
 
-        <div class="card skill tilt">
+        <div class="card tilt">
           <h3>ML / Data</h3>
           <div class="chips">
             <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Matplotlib</span>
@@ -614,7 +572,7 @@
           </div>
         </div>
 
-        <div class="card skill tilt">
+        <div class="card tilt">
           <h3>GenAI / DL</h3>
           <div class="chips">
             <span class="chip">PyTorch</span><span class="chip">LangChain</span><span class="chip">RAG</span>
@@ -634,7 +592,7 @@
       </div>
 
       <div class="grid-3">
-        <article class="card project tilt">
+        <article class="card tilt project">
           <div class="p-top">
             <h3 class="p-title">Multi-Agent Research Copilot</h3>
             <span class="tag">GENAI</span>
@@ -651,7 +609,7 @@
           </div>
         </article>
 
-        <article class="card project tilt">
+        <article class="card tilt project">
           <div class="p-top">
             <h3 class="p-title">Conversational RAG Chatbot</h3>
             <span class="tag">RAG</span>
@@ -668,13 +626,13 @@
           </div>
         </article>
 
-        <article class="card project tilt">
+        <article class="card tilt project">
           <div class="p-top">
             <h3 class="p-title">Customer Churn Prediction</h3>
             <span class="tag">ML</span>
           </div>
           <p class="p-desc">
-            End-to-end pipeline with EDA, feature engineering, model comparison, and Streamlit app.
+            End-to-end pipeline with EDA, feature engineering, model comparison, and a Streamlit app.
           </p>
           <div class="chips">
             <span class="chip">XGBoost</span><span class="chip">OHE</span><span class="chip">Metrics</span><span class="chip">Streamlit</span>
@@ -692,17 +650,17 @@
       <div class="section-head">
         <span class="kicker">Get in touch</span>
         <h2>Let’s Connect</h2>
-        <p class="sub">Open to internships + collaborations. Quick replies.</p>
+        <p class="sub">Open to internships + collaborations.</p>
       </div>
 
       <div class="contact-grid">
         <div class="card tilt">
           <h3>Contact</h3>
-          <p class="muted mono">Email: <a style="color:var(--a1);text-decoration:none;" href="mailto:ibrahimhajuri07@gmail.com">ibrahimhajuri07@gmail.com</a></p>
+          <p class="muted mono">Email: <a style="color:rgba(255,255,255,.9);text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.18);" href="mailto:ibrahimhajuri07@gmail.com">ibrahimhajuri07@gmail.com</a></p>
           <p class="muted mono">Location: Ahmedabad, Gujarat</p>
           <p class="muted mono">Phone: +91 9327385991</p>
-          <div class="sep"></div>
-          <div class="row">
+          <div style="height:10px"></div>
+          <div class="btnrow">
             <a class="btn" href="https://linkedin.com/in/ibrahimhajuri" target="_blank" rel="noreferrer">LinkedIn ↗</a>
             <a class="btn" href="https://github.com/hajuri07" target="_blank" rel="noreferrer">GitHub ↗</a>
           </div>
@@ -712,7 +670,7 @@
           <h3>Message Template</h3>
           <p class="muted">Copy-paste to recruiters:</p>
           <div class="card" style="margin-top:10px; background:rgba(255,255,255,.03); box-shadow:none;">
-            <p class="muted mono" style="margin:0; line-height:1.8;">
+            <p class="muted mono" style="margin:0; line-height:1.9;">
               Hi, I’m Ibrahim Hajuri. I build end-to-end ML projects (EDA → modeling → deployment) and GenAI apps (RAG, agents).
               I’m looking for an AI/ML internship. Can I share my portfolio and projects?
             </p>
@@ -722,9 +680,8 @@
     </section>
 
     <footer>
-      <div class="wrap">
-        <p>© <span id="year"></span> Ibrahim Hajuri • Built in one file • Hosted on GitHub Pages</p>
-      </div>
+      <p>© <span id="year"></span> Ibrahim Hajuri • Pure black theme • GitHub Pages</p>
+      <p style="margin:10px 0 0; font-size:.85rem; opacity:.65;">BUILD: BLACK-V1</p>
     </footer>
   </main>
 
@@ -744,7 +701,23 @@
       });
     });
 
-    // Particles
+    // 3D tilt effect
+    const tilt = document.querySelectorAll(".tilt");
+    tilt.forEach(card=>{
+      card.addEventListener("mousemove", (e)=>{
+        const r = card.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        const rx = ((y / r.height) - 0.5) * -9;
+        const ry = ((x / r.width) - 0.5) * 9;
+        card.style.transform = `translateY(-8px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+      });
+      card.addEventListener("mouseleave", ()=>{
+        card.style.transform = "";
+      });
+    });
+
+    // Subtle monochrome particles (optional)
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
@@ -760,35 +733,30 @@
     resize();
 
     const particles = [];
-    const COUNT = 60;
+    const COUNT = 42;
 
     class P{
       constructor(){
-        this.reset(true);
-      }
-      reset(first=false){
         this.x = Math.random()*innerWidth;
         this.y = Math.random()*innerHeight;
-        this.vx = (Math.random()-.5)*0.35;
-        this.vy = (Math.random()-.5)*0.35;
-        this.r = Math.random()*1.8 + 0.5;
-        this.a = Math.random()*0.45 + 0.18;
-        if(!first){
-          // spawn near edges sometimes
-          if(Math.random()<0.5){ this.x = (Math.random()<0.5)? -10 : innerWidth+10; }
-          else{ this.y = (Math.random()<0.5)? -10 : innerHeight+10; }
-        }
+        this.vx = (Math.random()-.5)*0.25;
+        this.vy = (Math.random()-.5)*0.25;
+        this.r = Math.random()*1.6 + 0.3;
+        this.a = Math.random()*0.25 + 0.10;
       }
       step(){
         this.x += this.vx;
         this.y += this.vy;
-        if(this.x < -50 || this.x > innerWidth+50 || this.y < -50 || this.y > innerHeight+50) this.reset();
+        if(this.x > innerWidth) this.x = 0;
+        if(this.x < 0) this.x = innerWidth;
+        if(this.y > innerHeight) this.y = 0;
+        if(this.y < 0) this.y = innerHeight;
       }
       draw(){
         ctx.beginPath();
-        ctx.fillStyle = `rgba(0,240,255,${this.a})`;
-        ctx.shadowColor = "rgba(0,240,255,0.35)";
-        ctx.shadowBlur = 12;
+        ctx.fillStyle = `rgba(255,255,255,${this.a})`;
+        ctx.shadowColor = "rgba(255,255,255,0.12)";
+        ctx.shadowBlur = 10;
         ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
         ctx.fill();
         ctx.shadowBlur = 0;
@@ -804,7 +772,7 @@
           const dx = a.x-b.x, dy = a.y-b.y;
           const d = Math.sqrt(dx*dx+dy*dy);
           if(d<150){
-            ctx.strokeStyle = `rgba(0,240,255,${0.14*(1-d/150)})`;
+            ctx.strokeStyle = `rgba(255,255,255,${0.08*(1-d/150)})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(a.x,a.y);
@@ -822,22 +790,6 @@
       requestAnimationFrame(animate);
     }
     animate();
-
-    // 3D tilt for cards
-    const tilt = document.querySelectorAll(".tilt");
-    tilt.forEach(card=>{
-      card.addEventListener("mousemove", (e)=>{
-        const r = card.getBoundingClientRect();
-        const x = e.clientX - r.left;
-        const y = e.clientY - r.top;
-        const rx = ((y / r.height) - 0.5) * -10;
-        const ry = ((x / r.width) - 0.5) * 10;
-        card.style.transform = `translateY(-10px) rotateX(${rx}deg) rotateY(${ry}deg)`;
-      });
-      card.addEventListener("mouseleave", ()=>{
-        card.style.transform = "";
-      });
-    });
   </script>
 </body>
 </html>
