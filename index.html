@@ -276,7 +276,6 @@
     }
     .card:hover{ border-color: var(--border2); }
 
-    /* subtle moving highlight */
     .card::after{
       content:"";
       position:absolute;
@@ -320,10 +319,7 @@
     }
 
     section{padding: 42px 0;}
-    .section-head{
-      text-align:center;
-      margin-bottom: 18px;
-    }
+    .section-head{text-align:center;margin-bottom:18px;}
     .kicker{
       color: rgba(255,255,255,.85);
       text-transform: uppercase;
@@ -354,9 +350,7 @@
     }
     @media (max-width: 950px){ .grid-3{grid-template-columns:1fr;} }
 
-    .project{
-      padding: 18px;
-    }
+    .project{padding:18px;}
     .p-top{
       display:flex;
       justify-content:space-between;
@@ -398,10 +392,9 @@
     .contact-grid{
       margin-top: 18px;
       display:grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr;
       gap: 14px;
     }
-    @media (max-width: 950px){ .contact-grid{grid-template-columns:1fr;} }
 
     .mono{font-family: var(--mono);}
     .muted{color: var(--dim);}
@@ -414,14 +407,12 @@
       margin-top: 30px;
     }
 
-    /* Responsive */
     @media (max-width: 768px){
       .navlinks{gap:10px}
       .navlinks a{font-size:.85rem}
       .btn{width:100%; justify-content:center}
     }
 
-    /* Reduce motion */
     @media (prefers-reduced-motion: reduce){
       *{animation:none !important; transition:none !important;}
       body::before{display:none;}
@@ -471,8 +462,7 @@
 
         <div class="quicklinks">
           <a href="https://github.com/hajuri07" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a href="https://linkedin.com/in/ibrahimhajuri" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-          <a href="#" target="_blank" rel="noreferrer">Resume ↗</a>
+          <a href="https://www.linkedin.com/in/ibrahimhajuri" target="_blank" rel="noreferrer">LinkedIn ↗</a>
         </div>
       </div>
 
@@ -487,11 +477,15 @@
         </div>
 
         <div class="card tilt">
-          <h3>Tech I Use</h3>
+          <h3>Profiles</h3>
           <div class="chips">
-            <span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">Scikit-learn</span>
-            <span class="chip">LangChain</span><span class="chip">Chroma/Astra</span><span class="chip">Streamlit</span>
-            <span class="chip">MySQL</span><span class="chip">GitHub</span>
+            <span class="chip">GitHub: hajuri07</span>
+            <span class="chip">LinkedIn: ibrahimhajuri</span>
+          </div>
+          <div style="height:10px"></div>
+          <div class="btnrow">
+            <a class="btn" href="https://github.com/hajuri07" target="_blank" rel="noreferrer">Open GitHub ↗</a>
+            <a class="btn" href="https://www.linkedin.com/in/ibrahimhajuri" target="_blank" rel="noreferrer">Open LinkedIn ↗</a>
           </div>
         </div>
       </div>
@@ -516,10 +510,6 @@
           <p class="muted">
             ML systems, churn prediction, dashboards, RAG chatbots, and multi-agent research copilots.
           </p>
-          <div style="height:10px"></div>
-          <div class="chips">
-            <span class="chip">Pipelines</span><span class="chip">Evaluation</span><span class="chip">Deployment</span>
-          </div>
         </div>
 
         <div class="card tilt">
@@ -527,10 +517,6 @@
           <p class="muted">
             Advanced deep learning, better retrieval (RAG), and agentic workflows with tools + memory.
           </p>
-          <div style="height:10px"></div>
-          <div class="chips">
-            <span class="chip">NLP</span><span class="chip">Agents</span><span class="chip">Vector DB</span>
-          </div>
         </div>
 
         <div class="card tilt">
@@ -538,10 +524,6 @@
           <p class="muted">
             Get strong internships and keep building until I’m operating at top ML engineer level.
           </p>
-          <div style="height:10px"></div>
-          <div class="chips">
-            <span class="chip">Internships</span><span class="chip">Projects</span><span class="chip">Consistency</span>
-          </div>
         </div>
       </div>
     </section>
@@ -588,7 +570,7 @@
       <div class="section-head">
         <span class="kicker">Portfolio</span>
         <h2>Featured Projects</h2>
-        <p class="sub">Replace links with your real repos/demos.</p>
+        <p class="sub">Live demos + repo links.</p>
       </div>
 
       <div class="grid-3">
@@ -600,12 +582,21 @@
           <p class="p-desc">
             3-agent workflow (Planner/Researcher/Critic) for research + validation with live sources.
           </p>
-          <div class="chips">
-            <span class="chip">LangChain</span><span class="chip">Agents</span><span class="chip">AstraDB</span><span class="chip">Streamlit</span>
-          </div>
           <div class="links">
-            <a href="#" target="_blank" rel="noreferrer">Live Demo ↗</a>
-            <a href="#" target="_blank" rel="noreferrer">Code ↗</a>
+            <a href="https://hajuri07-multiagent-research.hf.space/" target="_blank" rel="noreferrer">Live Demo ↗</a>
+          </div>
+        </article>
+
+        <article class="card tilt project">
+          <div class="p-top">
+            <h3 class="p-title">Customer Churn Prediction</h3>
+            <span class="tag">ML</span>
+          </div>
+          <p class="p-desc">
+            End-to-end pipeline with EDA, feature engineering, model comparison, and a deployed web app.
+          </p>
+          <div class="links">
+            <a href="https://churn-prediction-by-hajuri.onrender.com/" target="_blank" rel="noreferrer">Live App ↗</a>
           </div>
         </article>
 
@@ -617,29 +608,8 @@
           <p class="p-desc">
             Multi-PDF Q&A with chunking + embeddings + retrieval, plus history-aware followups.
           </p>
-          <div class="chips">
-            <span class="chip">Chroma</span><span class="chip">Groq</span><span class="chip">Embeddings</span><span class="chip">Memory</span>
-          </div>
           <div class="links">
             <a href="https://github.com/hajuri07" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href="#" target="_blank" rel="noreferrer">Live Demo ↗</a>
-          </div>
-        </article>
-
-        <article class="card tilt project">
-          <div class="p-top">
-            <h3 class="p-title">Customer Churn Prediction</h3>
-            <span class="tag">ML</span>
-          </div>
-          <p class="p-desc">
-            End-to-end pipeline with EDA, feature engineering, model comparison, and a Streamlit app.
-          </p>
-          <div class="chips">
-            <span class="chip">XGBoost</span><span class="chip">OHE</span><span class="chip">Metrics</span><span class="chip">Streamlit</span>
-          </div>
-          <div class="links">
-            <a href="#" target="_blank" rel="noreferrer">Live App ↗</a>
-            <a href="#" target="_blank" rel="noreferrer">Code ↗</a>
           </div>
         </article>
       </div>
@@ -656,24 +626,12 @@
       <div class="contact-grid">
         <div class="card tilt">
           <h3>Contact</h3>
-          <p class="muted mono">Email: <a style="color:rgba(255,255,255,.9);text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.18);" href="mailto:ibrahimhajuri07@gmail.com">ibrahimhajuri07@gmail.com</a></p>
+          <p class="muted mono">Email: <a style="color:rgba(255,255,255,.92);text-decoration:none;border-bottom:1px dashed rgba(255,255,255,.18);" href="mailto:ibrahimhajuri07@gmail.com">ibrahimhajuri07@gmail.com</a></p>
           <p class="muted mono">Location: Ahmedabad, Gujarat</p>
-          <p class="muted mono">Phone: +91 9327385991</p>
           <div style="height:10px"></div>
           <div class="btnrow">
-            <a class="btn" href="https://linkedin.com/in/ibrahimhajuri" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <a class="btn" href="https://www.linkedin.com/in/ibrahimhajuri" target="_blank" rel="noreferrer">LinkedIn ↗</a>
             <a class="btn" href="https://github.com/hajuri07" target="_blank" rel="noreferrer">GitHub ↗</a>
-          </div>
-        </div>
-
-        <div class="card tilt">
-          <h3>Message Template</h3>
-          <p class="muted">Copy-paste to recruiters:</p>
-          <div class="card" style="margin-top:10px; background:rgba(255,255,255,.03); box-shadow:none;">
-            <p class="muted mono" style="margin:0; line-height:1.9;">
-              Hi, I’m Ibrahim Hajuri. I build end-to-end ML projects (EDA → modeling → deployment) and GenAI apps (RAG, agents).
-              I’m looking for an AI/ML internship. Can I share my portfolio and projects?
-            </p>
           </div>
         </div>
       </div>
@@ -681,7 +639,7 @@
 
     <footer>
       <p>© <span id="year"></span> Ibrahim Hajuri • Pure black theme • GitHub Pages</p>
-      <p style="margin:10px 0 0; font-size:.85rem; opacity:.65;">BUILD: BLACK-V1</p>
+      <p style="margin:10px 0 0; font-size:.85rem; opacity:.65;">BUILD: BLACK-LINKS-V2</p>
     </footer>
   </main>
 
@@ -717,7 +675,7 @@
       });
     });
 
-    // Subtle monochrome particles (optional)
+    // Subtle monochrome particles
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
     const DPR = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
@@ -733,16 +691,16 @@
     resize();
 
     const particles = [];
-    const COUNT = 42;
+    const COUNT = 38;
 
     class P{
       constructor(){
         this.x = Math.random()*innerWidth;
         this.y = Math.random()*innerHeight;
-        this.vx = (Math.random()-.5)*0.25;
-        this.vy = (Math.random()-.5)*0.25;
-        this.r = Math.random()*1.6 + 0.3;
-        this.a = Math.random()*0.25 + 0.10;
+        this.vx = (Math.random()-.5)*0.22;
+        this.vy = (Math.random()-.5)*0.22;
+        this.r = Math.random()*1.5 + 0.3;
+        this.a = Math.random()*0.22 + 0.10;
       }
       step(){
         this.x += this.vx;
@@ -755,7 +713,7 @@
       draw(){
         ctx.beginPath();
         ctx.fillStyle = `rgba(255,255,255,${this.a})`;
-        ctx.shadowColor = "rgba(255,255,255,0.12)";
+        ctx.shadowColor = "rgba(255,255,255,0.10)";
         ctx.shadowBlur = 10;
         ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
         ctx.fill();
